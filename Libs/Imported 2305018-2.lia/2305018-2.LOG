@@ -1,0 +1,34 @@
+PCAD Importer Log
+Project : 2305018-2.LibPkg
+
+Section : C:\Users\kattemjau\Downloads\USB-C Charger\Libs\2305018-2.lia
+    Section : PCB Library - 2305018-2.PcbLib
+        Section : Load Messages
+            Warning - 1 : Skipping Token 2305018-2 On Line 213
+            Warning - 1 : Skipping Token attachedSymbol On Line 542
+        EndSection
+
+        Section : Import Messages
+            Warning - 0 : PCAD Pattern Graphics [*TE_2305018-2][Primary] associated with PCAD Component [2305018-2] has been renamed to PCB FootPrint [*TE_2305018-2_2305018-2(Primary)].
+        EndSection
+    EndSection
+
+    Section : SCH Library - 2305018-2.SchLib
+        Section : Parsing Messages
+            Warning - 1 : Skipping Token padStyleDef On Line 9
+            Warning - 1 : Skipping Token padStyleDef On Line 21
+            Warning - 1 : Skipping Token padStyleDef On Line 33
+            Warning - 1 : Skipping Token padStyleDef On Line 45
+            Warning - 1 : Skipping Token multiLayer On Line 120
+            Warning - 1 : Skipping Token layerContents On Line 152
+            Warning - 1 : Skipping Token layerContents On Line 178
+            Warning - 1 : Skipping Token layerContents On Line 186
+            Warning - 1 : Skipping Token layerContents On Line 194
+            Warning - 1 : Skipping Token layerContents On Line 205
+        EndSection
+
+        Section : Generating SCH Library - 2305018-2.SchLib
+            Warning - 0 : PCAD Pattern Graphics [*TE_2305018-2][Primary] associated with PCAD Component [2305018-2] has been renamed to PCB FootPrint [*TE_2305018-2_2305018-2(Primary)].
+        EndSection
+    EndSection
+EndSection
