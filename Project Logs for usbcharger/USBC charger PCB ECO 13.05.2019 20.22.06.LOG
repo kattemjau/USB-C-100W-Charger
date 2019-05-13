@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=VBUS Pin=*-1
+Added Component: Designator=U2(powerflat)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=NetC3_2 Pin=*-1
+Added Pin To Net: NetName=NetC3_2 Pin=U2-1
+Added Pin To Net: NetName=NetC3_2 Pin=U2-1
+Added Pin To Net: NetName=NetC3_2 Pin=U2-1
+Added Pin To Net: NetName=NetR5_2 Pin=U2-2
+Added Pin To Net: NetName=VBUS Pin=U2-3
+Added Pin To Net: NetName=VBUS Pin=U2-3
+Added Pin To Net: NetName=VBUS Pin=U2-3
+Change Net Name : Old Net Name=NetC3_2 New Net Name=VOUT
+Added Member To Class: ClassName=USBC charger Member=Component U2 STL6P3LLH6
+Added Room: Name=USBC charger

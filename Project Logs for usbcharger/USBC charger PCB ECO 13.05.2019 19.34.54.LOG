@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=CC1 Pin=P1-10
+Removed Pin From Net: NetName=CC2 Pin=P1-11
+Removed Pin From Net: NetName=SBU1 Pin=P1-12
+Removed Pin From Net: NetName=SBU2 Pin=P1-13
+Removed Pin From Net: NetName=2V7 Pin=P1-14
+Removed Pin From Net: NetName=1V2 Pin=P1-15
+Change Component Footprint: Designator=P1 Old Footprint=MHDR1X15 New Footprint=MHDR1X11
+Change Component Comment : Designator=P1 Old Comment=MHDR1X15 New Comment=MHDR1X11
+Change Component Designator: OldDesignator= NewDesignator=*
+Change Component Designator: OldDesignator=D NewDesignator=D*
+Added Pin To Net: NetName=1V2 Pin=P1-10
+Added Pin To Net: NetName=2V7 Pin=P1-11
+Added Room: Name=USBC charger

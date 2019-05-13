@@ -1,0 +1,6 @@
+Added Component: Designator=*(2pinSrewconnectyor)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=VBUS Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-2
+Added Member To Class: ClassName=USBC charger Member=Component * Component_1
+Added Room: Name=USBC charger

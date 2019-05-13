@@ -1,0 +1,38 @@
+Removed Pin From Net: NetName=SCL Pin=P?-1
+Removed Pin From Net: NetName=SDA Pin=P?-2
+Removed Pin From Net: NetName=ALERT Pin=P?-3
+Removed Pin From Net: NetName=GND Pin=P?-4
+Change Component Comment : Designator=D* Old Comment= ESDA25 New Comment=ESDA25
+Change Component Designator: OldDesignator=P? NewDesignator=P2
+Added Component: Designator=P1(MHDR1X15)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=P1-1
+Added Pin To Net: NetName=ALERT Pin=P1-2
+Added Pin To Net: NetName=SDA Pin=P1-3
+Added Pin To Net: NetName=SCL Pin=P1-4
+Added Pin To Net: NetName=POWER_PDO3 Pin=P1-6
+Added Pin To Net: NetName=POWER_PDO2 Pin=P1-7
+Added Pin To Net: NetName=A_B_SIDE Pin=P1-8
+Added Pin To Net: NetName=GPIO Pin=P1-9
+Added Pin To Net: NetName=CC1 Pin=P1-10
+Added Pin To Net: NetName=CC2 Pin=P1-11
+Added Pin To Net: NetName=SBU1 Pin=P1-12
+Added Pin To Net: NetName=SBU2 Pin=P1-13
+Added Pin To Net: NetName=2V7 Pin=P1-14
+Added Pin To Net: NetName=GND Pin=P2-1
+Added Pin To Net: NetName=USB_N Pin=P2-2
+Added Pin To Net: NetName=USB_P Pin=P2-3
+Added Pin To Net: NetName=VBUS Pin=P2-4
+Added Pin To Net: NetName=1V2 Pin=C1-2
+Added Pin To Net: NetName=1V2 Pin=P1-15
+Added Pin To Net: NetName=1V2 Pin=U1-21
+Added Net: Name=1V2
+Added Pin To Net: NetName=LED Pin=P1-5
+Added Pin To Net: NetName=LED Pin=R4-1
+Added Net: Name=LED
+Added Member To Class: ClassName=USBC charger Member=Component P1 MHDR1X15
+Added Member To Class: ClassName=USBC charger Member=Component USBC 2305018-2
+Added Room: Name=USBC charger

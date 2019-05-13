@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=ALERT Pin=P1-2
+Removed Pin From Net: NetName=LED Pin=P1-5
+Removed Pin From Net: NetName=POWER_PDO2 Pin=P1-7
+Removed Pin From Net: NetName=GPIO Pin=P1-9
+Added Pin To Net: NetName=LED Pin=P1-2
+Added Pin To Net: NetName=ALERT Pin=P1-5
+Added Pin To Net: NetName=GPIO Pin=P1-7
+Added Pin To Net: NetName=POWER_PDO2 Pin=P1-9
+Added Room: Name=USBC charger

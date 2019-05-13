@@ -1,0 +1,867 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD18\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">13.05.2019</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">15.55.22</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc" class="file"><acronym title="C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc">C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">4</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">165</td></tr>
+</table>
+</td>
+</table><a name="IDFTJSCESKV3B1LVH0EX1VLRRXOH5QVX1WQNOTTCI34LJYGLNBEBZI"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTEN4SNH5XMKNF5D30LSRFHBEZMJUTRR30FBALDIPXNFJ032VECKK">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</a></td>
+<td class="column2">4</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">4</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID04L2PD2ZN1UWIHJBFLWVVXZSEIXZCYBZRZOCNAOYGSV1MNOZ0A3N">Clearance Constraint (Gap=0.089mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0QUCVZY1RWVCZKGQG01SIV2JZVUN2Y3FFSKDHXEHNORCCUEPLD">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2FTHXRAWP2HRBT5BE5DVKJVKMD4WJL0W0F2QBBDY2CO1KLIIZLFP">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">30</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEMN203OILDXGDEUJR24E3GGQMD3SJGF0JWOKWXB4KF3J4HX3YJZG">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5VERSPPILRWMB5SMPYPLYTFFDHBIOQGWTB2WD2Z00Y2BBKLXR0C">Width Constraint (Min=0.127mm) (Max=1mm) (Preferred=0.25mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOSGDTSIVXYOVOBXJNZM1XXTD3DVR4NEHIEYHYTGGKOWHHCW3JRGM">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDELFMAHNU3ZJSPEJ40VQJOHFTBI2TAGYFBROHTGHGWDVTIA1J2RE">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOEHZN0ELFYGCM3JZ1ZYRSF2WBHYWZ3BILMCAIXL42UFYKTJ54CYF">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUDDK0PHD4XZ2SSLZU2HZXYGOIYSCNEUR4N1BJM1EVKDIWRHBDOD">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">61</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSRARWNEWVMYDDRJ4F4ECPVKD4FGK2FO5M5K2FFMFEFLEVQWWAGWB">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">55</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMQ1HMDSHDLKTKCH2EEM4RTMMCICMPZ5G3EOEGSJPI5BNLGWFW13O">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">13</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLAQVHWVUVRLVEK5OVXCM5XGCVLVH2WSXEC35FFD2UUGLDA3U2YCE">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPLDPIK0MCALYVMOZYOEOP4X4MZHBZPMNS0K4TMWFGMO5NZFZJHE">Room USBC charger (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('USBC charger'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKHRNUZJDHA5RHMY3YZC4M30SLEF42FTNDSGLOSKFMSHN0BJRV3ZO">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">165</td>
+</tr>
+</table><br><a name="ID4STPYIY0F5KZLR3VJAG1I3QZ1MWWZ2I2U3JN3FB4PCLJHSGPU4H"><h2>Warnings</h2></a><a name="IDTEN4SNH5XMKNF5D30LSRFHBEZMJUTRR30FBALDIPXNFJ032VECKK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Polygon named: GND On Top Layer</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Polygon named: VBUS_L01_P000 On Top Layer</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Polygon named: Abstract polygon ID On Top Layer</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Polygon named: Abstract polygon ID On Top Layer</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID2FTHXRAWP2HRBT5BE5DVKJVKMD4WJL0W0F2QBBDY2CO1KLIIZLFP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1171.236mil|Location2.X=1476.441mil|Location1.Y=408.824mil|Location2.Y=778.331mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1171.236mil|Location2.X=1476.441mil|Location1.Y=408.824mil|Location2.Y=778.331mil|Absolute=True">Un-Routed Net Constraint: Net VBUS Between Pad D2-1(30.251mm,19.168mm) on Top Layer And Pad *-1(36.4mm,11.486mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=899.504mil|Location2.X=1476.441mil|Location1.Y=378.835mil|Location2.Y=495.564mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=899.504mil|Location2.X=1476.441mil|Location1.Y=378.835mil|Location2.Y=495.564mil|Absolute=True">Un-Routed Net Constraint: Net VBUS Between Pad R5-1(23.299mm,10.174mm) on Top Layer And Pad *-1(36.4mm,11.486mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.299mil|Location2.X=1476.441mil|Location1.Y=125.921mil|Location2.Y=298.714mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1052.299mil|Location2.X=1476.441mil|Location1.Y=125.921mil|Location2.Y=298.714mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad P?-4(27.33mm,3.8mm) on Multi-Layer And Pad *-2(36.4mm,6.486mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1184.425mil|Location2.X=1476.441mil|Location1.Y=211.974mil|Location2.Y=843.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1184.425mil|Location2.X=1476.441mil|Location1.Y=211.974mil|Location2.Y=843.646mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R3-1(30.536mm,20.877mm) on Top Layer And Pad *-2(36.4mm,6.486mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=637.496mil|Location2.X=738.528mil|Location1.Y=472.496mil|Location2.Y=512.425mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=637.496mil|Location2.X=738.528mil|Location1.Y=472.496mil|Location2.Y=512.425mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C2-1(16.744mm,12.514mm) on Top Layer And Pad C1-1(18.207mm,12.503mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=695.095mil|Location2.X=764.905mil|Location1.Y=316.591mil|Location2.Y=511.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=695.095mil|Location2.X=764.905mil|Location1.Y=316.591mil|Location2.Y=511.992mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1-1(18.207mm,12.503mm) on Top Layer And Pad U1-22(19.227mm,8.568mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=550.252mil|Location2.X=680.929mil|Location1.Y=464.425mil|Location2.Y=527.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=550.252mil|Location2.X=680.929mil|Location1.Y=464.425mil|Location2.Y=527.543mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C4-1(14.778mm,12.598mm) on Top Layer And Pad C2-1(16.744mm,12.514mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=457.732mil|Location2.X=613.37mil|Location1.Y=464.425mil|Location2.Y=527.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=457.732mil|Location2.X=613.37mil|Location1.Y=464.425mil|Location2.Y=527.543mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad USBC-G1(12.103mm,12.364mm) on Top Layer And Pad C4-1(14.778mm,12.598mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=550.252mil|Location2.X=725.535mil|Location1.Y=316.591mil|Location2.Y=456.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=550.252mil|Location2.X=725.535mil|Location1.Y=316.591mil|Location2.Y=456.677mil|Absolute=True">Un-Routed Net Constraint: Net VBUS Between Pad C4-2(14.778mm,10.798mm) on Top Layer And Pad U1-24(18.227mm,8.568mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=358.386mil|Location2.X=681.811mil|Location1.Y=296.221mil|Location2.Y=525.118mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=358.386mil|Location2.X=681.811mil|Location1.Y=296.221mil|Location2.Y=525.118mil|Absolute=True">Un-Routed Net Constraint: Net VBUS Between Track (11.643mm,10.064mm)(12.103mm,10.064mm) on Top Layer And Pad C4-2(14.778mm,10.798mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=576mil|Location2.X=710.772mil|Location1.Y=149.622mil|Location2.Y=219.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=576mil|Location2.X=710.772mil|Location1.Y=149.622mil|Location2.Y=219.276mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad D*-3(15.032mm,4.402mm) on Top Layer And Pad U1-6(17.527mm,5.368mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=429.189mil|Location2.X=607.622mil|Location1.Y=149.602mil|Location2.Y=196.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=429.189mil|Location2.X=607.622mil|Location1.Y=149.602mil|Location2.Y=196.992mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad USBC-S4(11.928mm,4.364mm) on Multi-Layer And Pad D*-3(15.032mm,4.402mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.661mil|Location2.X=1249.669mil|Location1.Y=125.921mil|Location2.Y=204.512mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.661mil|Location2.X=1249.669mil|Location1.Y=125.921mil|Location2.Y=204.512mil|Absolute=True">Un-Routed Net Constraint: Net SCL Between Pad U1-7(18.227mm,4.668mm) on Top Layer And Pad P?-1(31.14mm,3.8mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=729.346mil|Location2.X=1199.669mil|Location1.Y=125.921mil|Location2.Y=204.512mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=729.346mil|Location2.X=1199.669mil|Location1.Y=125.921mil|Location2.Y=204.512mil|Absolute=True">Un-Routed Net Constraint: Net SDA Between Pad U1-8(18.727mm,4.668mm) on Top Layer And Pad P?-2(29.87mm,3.8mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=808.087mil|Location2.X=1149.669mil|Location1.Y=125.921mil|Location2.Y=358.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=808.087mil|Location2.X=1149.669mil|Location1.Y=125.921mil|Location2.Y=358.055mil|Absolute=True">Un-Routed Net Constraint: Net ALERT Between Pad U1-19(20.727mm,8.568mm) on Top Layer And Pad P?-3(28.6mm,3.8mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=808.087mil|Location2.X=1099.669mil|Location1.Y=125.921mil|Location2.Y=204.512mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=808.087mil|Location2.X=1099.669mil|Location1.Y=125.921mil|Location2.Y=204.512mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1-12(20.727mm,4.668mm) on Top Layer And Pad P?-4(27.33mm,3.8mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=805.094mil|Location2.X=935.063mil|Location1.Y=378.835mil|Location2.Y=511.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=805.094mil|Location2.X=935.063mil|Location1.Y=378.835mil|Location2.Y=511.992mil|Absolute=True">Un-Routed Net Constraint: Net VBUS Between Pad R1-2(21.001mm,12.553mm) on Top Layer And Pad R5-1(23.299mm,10.174mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=672.284mil|Location2.X=1271.847mil|Location1.Y=394.646mil|Location2.Y=773.902mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=672.284mil|Location2.X=1271.847mil|Location1.Y=394.646mil|Location2.Y=773.902mil|Absolute=True">Un-Routed Net Constraint: Net NetD2_2 Between Pad R2-1(19.616mm,12.564mm) on Top Layer And Track (29.765mm,17.117mm)(30.118mm,16.764mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.661mil|Location2.X=935.063mil|Location1.Y=316.591mil|Location2.Y=422.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=709.661mil|Location2.X=935.063mil|Location1.Y=316.591mil|Location2.Y=422.268mil|Absolute=True">Un-Routed Net Constraint: Net VBUS Between Pad U1-24(18.227mm,8.568mm) on Top Layer And Pad R5-1(23.299mm,10.174mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=958.559mil|Location2.X=994.118mil|Location1.Y=328.835mil|Location2.Y=422.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=958.559mil|Location2.X=994.118mil|Location1.Y=328.835mil|Location2.Y=422.268mil|Absolute=True">Un-Routed Net Constraint: Net NetR5_2 Between Pad R8-1(24.799mm,8.904mm) on Top Layer And Pad R5-2(24.799mm,10.174mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=958.559mil|Location2.X=994.118mil|Location1.Y=273.835mil|Location2.Y=372.268mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=958.559mil|Location2.X=994.118mil|Location1.Y=273.835mil|Location2.Y=372.268mil|Absolute=True">Un-Routed Net Constraint: Net NetR5_2 Between Pad R6-1(24.799mm,7.507mm) on Top Layer And Pad R8-1(24.799mm,8.904mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=457.732mil|Location2.X=495.26mil|Location1.Y=458.165mil|Location2.Y=496.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=457.732mil|Location2.X=495.26mil|Location1.Y=458.165mil|Location2.Y=496.677mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad USBC-A1(12.103mm,11.864mm) on Top Layer And Pad USBC-G1(12.103mm,12.364mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=457.732mil|Location2.X=495.26mil|Location1.Y=197.339mil|Location2.Y=235.85mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=457.732mil|Location2.X=495.26mil|Location1.Y=197.339mil|Location2.Y=235.85mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad USBC-G2(12.103mm,5.264mm) on Top Layer And Pad USBC-A12(12.103mm,5.764mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=408.52mil|Location2.X=495.26mil|Location1.Y=318.402mil|Location2.Y=365.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=408.52mil|Location2.X=495.26mil|Location1.Y=318.402mil|Location2.Y=365.772mil|Absolute=True">Un-Routed Net Constraint: Net USB_P Between Pad USBC-B6(10.853mm,8.314mm) on Top Layer And Pad USBC-A6(12.103mm,9.064mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=408.52mil|Location2.X=495.26mil|Location1.Y=328.244mil|Location2.Y=375.614mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=408.52mil|Location2.X=495.26mil|Location1.Y=328.244mil|Location2.Y=375.614mil|Absolute=True">Un-Routed Net Constraint: Net USB_N Between Pad USBC-B7(10.853mm,9.314mm) on Top Layer And Pad USBC-A7(12.103mm,8.564mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=358.386mil|Location2.X=576.496mil|Location1.Y=296.221mil|Location2.Y=397.795mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=358.386mil|Location2.X=576.496mil|Location1.Y=296.221mil|Location2.Y=397.795mil|Absolute=True">Un-Routed Net Constraint: Net VBUS Between Track (11.643mm,10.064mm)(12.103mm,10.064mm) on Top Layer And Pad USBC-A9(12.103mm,7.564mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=429.189mil|Location2.X=510.024mil|Location1.Y=476.866mil|Location2.Y=544.413mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=429.189mil|Location2.X=510.024mil|Location1.Y=476.866mil|Location2.Y=544.413mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad USBC-S3(11.928mm,13.264mm) on Multi-Layer And Pad USBC-G1(12.103mm,12.364mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=429.189mil|Location2.X=510.024mil|Location1.Y=149.602mil|Location2.Y=217.15mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=429.189mil|Location2.X=510.024mil|Location1.Y=149.602mil|Location2.Y=217.15mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad USBC-S4(11.928mm,4.364mm) on Multi-Layer And Pad USBC-G2(12.103mm,5.264mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=299.268mil|Location2.X=510.024mil|Location1.Y=498.028mil|Location2.Y=546.382mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=299.268mil|Location2.X=510.024mil|Location1.Y=498.028mil|Location2.Y=546.382mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad USBC-S1(8.728mm,13.264mm) on Multi-Layer And Pad USBC-S3(11.928mm,13.264mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=299.268mil|Location2.X=510.024mil|Location1.Y=147.634mil|Location2.Y=195.988mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=299.268mil|Location2.X=510.024mil|Location1.Y=147.634mil|Location2.Y=195.988mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad USBC-S2(8.728mm,4.364mm) on Multi-Layer And Pad USBC-S4(11.928mm,4.364mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEMN203OILDXGDEUJR24E3GGQMD3SJGF0JWOKWXB4KF3J4HX3YJZG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Modified Polygon (Allow modified: No), (Allow shelved: No)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=283.464mil|Location2.X=1582.677mil|Location1.Y=370.079mil|Location2.Y=551.181mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=283.464mil|Location2.X=1582.677mil|Location1.Y=370.079mil|Location2.Y=551.181mil|Absolute=True">Modified Polygon: Polygon Not Repour After Edit  () on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=283.464mil|Location2.X=1582.677mil|Location1.Y=145.669mil|Location2.Y=362.205mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=283.464mil|Location2.X=1582.677mil|Location1.Y=145.669mil|Location2.Y=362.205mil|Absolute=True">Modified Polygon: Polygon Not Repour After Edit  () on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=287.402mil|Location2.X=1582.677mil|Location1.Y=145.669mil|Location2.Y=551.181mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=287.402mil|Location2.X=1582.677mil|Location1.Y=145.669mil|Location2.Y=551.181mil|Absolute=True">Modified Polygon: Polygon Not Repour After Edit  (GND) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546.811mil|Location2.X=726.811mil|Location1.Y=320.551mil|Location2.Y=455.551mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546.811mil|Location2.X=726.811mil|Location1.Y=320.551mil|Location2.Y=455.551mil|Absolute=True">Modified Polygon: Polygon Not Repour After Edit  (VBUS_L01_P000) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDUDDK0PHD4XZ2SSLZU2HZXYGOIYSCNEUR4N1BJM1EVKDIWRHBDOD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=544.627mil|Location2.X=555.877mil|Location1.Y=454.926mil|Location2.Y=466.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=544.627mil|Location2.X=555.877mil|Location1.Y=454.926mil|Location2.Y=466.176mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad C4-1(14.778mm,12.598mm) on Top Layer And Pad C4-2(14.778mm,10.798mm) on Top Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=607.387mil|Location2.X=618.637mil|Location1.Y=269.926mil|Location2.Y=281.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=607.387mil|Location2.X=618.637mil|Location1.Y=269.926mil|Location2.Y=281.176mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.02mm &lt; 0.254mm) Between Pad D*-1(15.982mm,6.802mm) on Top Layer And Via (15.159mm,6.999mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.02mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1163.706mil|Location2.X=1174.956mil|Location1.Y=725.336mil|Location2.Y=736.586mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1163.706mil|Location2.X=1174.956mil|Location1.Y=725.336mil|Location2.Y=736.586mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad D2-1(30.251mm,19.168mm) on Top Layer And Pad D2-4(29.151mm,19.168mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1163.706mil|Location2.X=1174.956mil|Location1.Y=666.281mil|Location2.Y=677.531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1163.706mil|Location2.X=1174.956mil|Location1.Y=666.281mil|Location2.Y=677.531mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad D2-2(30.251mm,17.668mm) on Top Layer And Pad D2-3(29.151mm,17.668mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1195.359mil|Location2.X=1206.609mil|Location1.Y=143.981mil|Location2.Y=155.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1195.359mil|Location2.X=1206.609mil|Location1.Y=143.981mil|Location2.Y=155.231mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.067mm &lt; 0.254mm) Between Pad P?-1(31.14mm,3.8mm) on Multi-Layer And Pad P?-2(29.87mm,3.8mm) on Multi-Layer [Top Solder] Mask Sliver [0.067mm] / [Bottom Solder] Mask Sliver [0.067mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1145.359mil|Location2.X=1156.609mil|Location1.Y=143.981mil|Location2.Y=155.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1145.359mil|Location2.X=1156.609mil|Location1.Y=143.981mil|Location2.Y=155.231mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.067mm &lt; 0.254mm) Between Pad P?-2(29.87mm,3.8mm) on Multi-Layer And Pad P?-3(28.6mm,3.8mm) on Multi-Layer [Top Solder] Mask Sliver [0.067mm] / [Bottom Solder] Mask Sliver [0.067mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1095.359mil|Location2.X=1106.609mil|Location1.Y=143.981mil|Location2.Y=155.231mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1095.359mil|Location2.X=1106.609mil|Location1.Y=143.981mil|Location2.Y=155.231mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.067mm &lt; 0.254mm) Between Pad P?-3(28.6mm,3.8mm) on Multi-Layer And Pad P?-4(27.33mm,3.8mm) on Multi-Layer [Top Solder] Mask Sliver [0.067mm] / [Bottom Solder] Mask Sliver [0.067mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1178.8mil|Location2.X=1190.05mil|Location1.Y=841.639mil|Location2.Y=852.889mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1178.8mil|Location2.X=1190.05mil|Location1.Y=841.639mil|Location2.Y=852.889mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.184mm &lt; 0.254mm) Between Pad R3-1(30.536mm,20.877mm) on Top Layer And Pad R4-1(30.536mm,22.164mm) on Top Layer [Top Solder] Mask Sliver [0.184mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1119.745mil|Location2.X=1130.995mil|Location1.Y=841.639mil|Location2.Y=852.889mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1119.745mil|Location2.X=1130.995mil|Location1.Y=841.639mil|Location2.Y=852.889mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.184mm &lt; 0.254mm) Between Pad R3-2(29.036mm,20.877mm) on Top Layer And Pad R4-2(29.036mm,22.164mm) on Top Layer [Top Solder] Mask Sliver [0.184mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=893.879mil|Location2.X=905.129mil|Location1.Y=369.926mil|Location2.Y=381.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=893.879mil|Location2.X=905.129mil|Location1.Y=369.926mil|Location2.Y=381.176mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad R5-1(23.299mm,10.174mm) on Top Layer And Pad R8-2(23.299mm,8.904mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.934mil|Location2.X=964.184mil|Location1.Y=369.926mil|Location2.Y=381.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.934mil|Location2.X=964.184mil|Location1.Y=369.926mil|Location2.Y=381.176mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad R5-2(24.799mm,10.174mm) on Top Layer And Pad R8-1(24.799mm,8.904mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=294.296mil|Location2.Y=305.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=294.296mil|Location2.Y=305.546mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-1(17.527mm,7.868mm) on Top Layer And Pad U1-2(17.527mm,7.368mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=704.591mil|Location2.X=715.841mil|Location1.Y=311.521mil|Location2.Y=322.771mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=704.591mil|Location2.X=715.841mil|Location1.Y=311.521mil|Location2.Y=322.771mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.127mm &lt; 0.254mm) Between Pad U1-1(17.527mm,7.868mm) on Top Layer And Pad U1-24(18.227mm,8.568mm) on Top Layer [Top Solder] Mask Sliver [0.127mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=780.871mil|Location2.X=792.121mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=780.871mil|Location2.X=792.121mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-10(19.727mm,4.668mm) on Top Layer And Pad U1-11(20.227mm,4.668mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=761.186mil|Location2.X=772.436mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=761.186mil|Location2.X=772.436mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-10(19.727mm,4.668mm) on Top Layer And Pad U1-9(19.227mm,4.668mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=800.556mil|Location2.X=811.806mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=800.556mil|Location2.X=811.806mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-11(20.227mm,4.668mm) on Top Layer And Pad U1-12(20.727mm,4.668mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=817.78mil|Location2.X=829.03mil|Location1.Y=198.332mil|Location2.Y=209.582mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=817.78mil|Location2.X=829.03mil|Location1.Y=198.332mil|Location2.Y=209.582mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.127mm &lt; 0.254mm) Between Pad U1-12(20.727mm,4.668mm) on Top Layer And Pad U1-13(21.427mm,5.368mm) on Top Layer [Top Solder] Mask Sliver [0.127mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=215.556mil|Location2.Y=226.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=215.556mil|Location2.Y=226.806mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-13(21.427mm,5.368mm) on Top Layer And Pad U1-14(21.427mm,5.868mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=235.241mil|Location2.Y=246.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=235.241mil|Location2.Y=246.491mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-14(21.427mm,5.868mm) on Top Layer And Pad U1-15(21.427mm,6.368mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=254.926mil|Location2.Y=266.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=254.926mil|Location2.Y=266.176mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-15(21.427mm,6.368mm) on Top Layer And Pad U1-16(21.427mm,6.868mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=274.611mil|Location2.Y=285.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=274.611mil|Location2.Y=285.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-16(21.427mm,6.868mm) on Top Layer And Pad U1-17(21.427mm,7.368mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=294.296mil|Location2.Y=305.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=825.162mil|Location2.X=836.412mil|Location1.Y=294.296mil|Location2.Y=305.546mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-17(21.427mm,7.368mm) on Top Layer And Pad U1-18(21.427mm,7.868mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=817.78mil|Location2.X=829.03mil|Location1.Y=311.521mil|Location2.Y=322.771mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=817.78mil|Location2.X=829.03mil|Location1.Y=311.521mil|Location2.Y=322.771mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.127mm &lt; 0.254mm) Between Pad U1-18(21.427mm,7.868mm) on Top Layer And Pad U1-19(20.727mm,8.568mm) on Top Layer [Top Solder] Mask Sliver [0.127mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=800.556mil|Location2.X=811.806mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=800.556mil|Location2.X=811.806mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-19(20.727mm,8.568mm) on Top Layer And Pad U1-20(20.227mm,8.568mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=274.611mil|Location2.Y=285.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=274.611mil|Location2.Y=285.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-2(17.527mm,7.368mm) on Top Layer And Pad U1-3(17.527mm,6.868mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=780.871mil|Location2.X=792.121mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=780.871mil|Location2.X=792.121mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-20(20.227mm,8.568mm) on Top Layer And Pad U1-21(19.727mm,8.568mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=761.186mil|Location2.X=772.436mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=761.186mil|Location2.X=772.436mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-21(19.727mm,8.568mm) on Top Layer And Pad U1-22(19.227mm,8.568mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=741.501mil|Location2.X=752.751mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=741.501mil|Location2.X=752.751mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-22(19.227mm,8.568mm) on Top Layer And Pad U1-23(18.727mm,8.568mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=721.816mil|Location2.X=733.066mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=721.816mil|Location2.X=733.066mil|Location1.Y=318.903mil|Location2.Y=330.153mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-23(18.727mm,8.568mm) on Top Layer And Pad U1-24(18.227mm,8.568mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=254.926mil|Location2.Y=266.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=254.926mil|Location2.Y=266.176mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-3(17.527mm,6.868mm) on Top Layer And Pad U1-4(17.527mm,6.368mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=235.241mil|Location2.Y=246.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=235.241mil|Location2.Y=246.491mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-4(17.527mm,6.368mm) on Top Layer And Pad U1-5(17.527mm,5.868mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=215.556mil|Location2.Y=226.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=671.619mil|Location2.X=682.869mil|Location1.Y=215.556mil|Location2.Y=226.806mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-5(17.527mm,5.868mm) on Top Layer And Pad U1-6(17.527mm,5.368mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=704.591mil|Location2.X=715.841mil|Location1.Y=198.332mil|Location2.Y=209.582mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=704.591mil|Location2.X=715.841mil|Location1.Y=198.332mil|Location2.Y=209.582mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.127mm &lt; 0.254mm) Between Pad U1-6(17.527mm,5.368mm) on Top Layer And Pad U1-7(18.227mm,4.668mm) on Top Layer [Top Solder] Mask Sliver [0.127mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=721.816mil|Location2.X=733.066mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=721.816mil|Location2.X=733.066mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-7(18.227mm,4.668mm) on Top Layer And Pad U1-8(18.727mm,4.668mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=741.501mil|Location2.X=752.751mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=741.501mil|Location2.X=752.751mil|Location1.Y=165.359mil|Location2.Y=176.609mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad U1-8(18.727mm,4.668mm) on Top Layer And Pad U1-9(19.227mm,4.668mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=470.812mil|Location2.Y=482.062mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=470.812mil|Location2.Y=482.062mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.022mm &lt; 0.254mm) Between Pad USBC-A1(12.103mm,11.864mm) on Top Layer And Pad USBC-G1(12.103mm,12.364mm) on Top Layer [Top Solder] Mask Sliver [0.022mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=262.643mil|Location2.Y=273.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=262.643mil|Location2.Y=273.893mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-A10(12.103mm,7.064mm) on Top Layer And Pad USBC-A11(12.103mm,6.564mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=282.328mil|Location2.Y=293.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=282.328mil|Location2.Y=293.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-A10(12.103mm,7.064mm) on Top Layer And Pad USBC-A9(12.103mm,7.564mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=211.954mil|Location2.Y=223.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=211.954mil|Location2.Y=223.204mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.022mm &lt; 0.254mm) Between Pad USBC-A12(12.103mm,5.764mm) on Top Layer And Pad USBC-G2(12.103mm,5.264mm) on Top Layer [Top Solder] Mask Sliver [0.022mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=420.123mil|Location2.Y=431.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=420.123mil|Location2.Y=431.373mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-A2(12.103mm,11.064mm) on Top Layer And Pad USBC-A3(12.103mm,10.564mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=400.438mil|Location2.Y=411.688mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=400.438mil|Location2.Y=411.688mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-A3(12.103mm,10.564mm) on Top Layer And Pad USBC-A4(12.103mm,10.064mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=380.753mil|Location2.Y=392.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=380.753mil|Location2.Y=392.003mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-A4(12.103mm,10.064mm) on Top Layer And Pad USBC-A5(12.103mm,9.564mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=361.068mil|Location2.Y=372.318mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=361.068mil|Location2.Y=372.318mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-A5(12.103mm,9.564mm) on Top Layer And Pad USBC-A6(12.103mm,9.064mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=341.383mil|Location2.Y=352.633mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=341.383mil|Location2.Y=352.633mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-A6(12.103mm,9.064mm) on Top Layer And Pad USBC-A7(12.103mm,8.564mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=321.698mil|Location2.Y=332.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=321.698mil|Location2.Y=332.948mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-A7(12.103mm,8.564mm) on Top Layer And Pad USBC-A8(12.103mm,8.064mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=302.013mil|Location2.Y=313.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=302.013mil|Location2.Y=313.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-A8(12.103mm,8.064mm) on Top Layer And Pad USBC-A9(12.103mm,7.564mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=233.115mil|Location2.Y=244.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=233.115mil|Location2.Y=244.365mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B1(10.853mm,5.814mm) on Top Layer And Pad USBC-B2(10.853mm,6.314mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=429.966mil|Location2.Y=441.216mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=429.966mil|Location2.Y=441.216mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B10(10.853mm,10.814mm) on Top Layer And Pad USBC-B11(10.853mm,11.314mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=410.281mil|Location2.Y=421.531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=410.281mil|Location2.Y=421.531mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B10(10.853mm,10.814mm) on Top Layer And Pad USBC-B9(10.853mm,10.314mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=449.651mil|Location2.Y=460.901mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=449.651mil|Location2.Y=460.901mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B11(10.853mm,11.314mm) on Top Layer And Pad USBC-B12(10.853mm,11.814mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=252.8mil|Location2.Y=264.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=252.8mil|Location2.Y=264.05mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B2(10.853mm,6.314mm) on Top Layer And Pad USBC-B3(10.853mm,6.814mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=272.485mil|Location2.Y=283.735mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=272.485mil|Location2.Y=283.735mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B3(10.853mm,6.814mm) on Top Layer And Pad USBC-B4(10.853mm,7.314mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=292.17mil|Location2.Y=303.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=292.17mil|Location2.Y=303.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B4(10.853mm,7.314mm) on Top Layer And Pad USBC-B5(10.853mm,7.814mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=400.957mil|Location2.X=412.207mil|Location1.Y=292.217mil|Location2.Y=305.187mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=400.957mil|Location2.X=412.207mil|Location1.Y=292.217mil|Location2.Y=305.187mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.11mm &lt; 0.254mm) Between Pad USBC-B4(10.853mm,7.314mm) on Top Layer And Via (9.829mm,7.814mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.11mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=311.855mil|Location2.Y=323.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=311.855mil|Location2.Y=323.105mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B5(10.853mm,7.814mm) on Top Layer And Pad USBC-B6(10.853mm,8.314mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=401.998mil|Location2.X=413.248mil|Location1.Y=302.013mil|Location2.Y=313.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=401.998mil|Location2.X=413.248mil|Location1.Y=302.013mil|Location2.Y=313.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.046mm &lt; 0.254mm) Between Pad USBC-B5(10.853mm,7.814mm) on Top Layer And Via (9.829mm,7.814mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.046mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=400.957mil|Location2.X=412.207mil|Location1.Y=310.134mil|Location2.Y=323.058mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=400.957mil|Location2.X=412.207mil|Location1.Y=310.134mil|Location2.Y=323.058mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.11mm &lt; 0.254mm) Between Pad USBC-B6(10.853mm,8.314mm) on Top Layer And Via (9.829mm,7.814mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.11mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=370.91mil|Location2.Y=382.16mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=370.91mil|Location2.Y=382.16mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B7(10.853mm,9.314mm) on Top Layer And Pad USBC-B8(10.853mm,9.814mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=390.596mil|Location2.Y=401.846mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=402.895mil|Location2.X=414.145mil|Location1.Y=390.596mil|Location2.Y=401.846mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad USBC-B8(10.853mm,9.814mm) on Top Layer And Pad USBC-B9(10.853mm,10.314mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=492.712mil|Location2.Y=503.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=492.712mil|Location2.Y=503.962mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.084mm &lt; 0.254mm) Between Pad USBC-G1(12.103mm,12.364mm) on Top Layer And Pad USBC-S3(11.928mm,13.264mm) on Multi-Layer [Top Solder] Mask Sliver [0.084mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=190.054mil|Location2.Y=201.304mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=452.107mil|Location2.X=463.357mil|Location1.Y=190.054mil|Location2.Y=201.304mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.084mm &lt; 0.254mm) Between Pad USBC-G2(12.103mm,5.264mm) on Top Layer And Pad USBC-S4(11.928mm,4.364mm) on Multi-Layer [Top Solder] Mask Sliver [0.084mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDSRARWNEWVMYDDRJ4F4ECPVKD4FGK2FO5M5K2FFMFEFLEVQWWAGWB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=543.843mil|Location2.X=555.093mil|Location1.Y=462.84mil|Location2.Y=474.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=543.843mil|Location2.X=555.093mil|Location1.Y=462.84mil|Location2.Y=474.09mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.243mm &lt; 0.254mm) Between Arc (13.635mm,11.899mm) on Top Overlay And Pad C4-1(14.778mm,12.598mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.243mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=668.162mil|Location2.X=679.412mil|Location1.Y=262.17mil|Location2.Y=273.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=668.162mil|Location2.X=679.412mil|Location1.Y=262.17mil|Location2.Y=273.42mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.064mm &lt; 0.254mm) Between Arc (16.832mm,6.802mm) on Top Overlay And Pad U1-3(17.527mm,6.868mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.064mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=666.525mil|Location2.X=677.775mil|Location1.Y=251.601mil|Location2.Y=262.851mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=666.525mil|Location2.X=677.775mil|Location1.Y=251.601mil|Location2.Y=262.851mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.221mm &lt; 0.254mm) Between Arc (16.832mm,6.802mm) on Top Overlay And Pad U1-4(17.527mm,6.368mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=552.564mil|Location2.X=563.814mil|Location1.Y=521.855mil|Location2.Y=533.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=552.564mil|Location2.X=563.814mil|Location1.Y=521.855mil|Location2.Y=533.105mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C4-1(14.778mm,12.598mm) on Top Layer And Track (14.178mm,13.598mm)(15.378mm,13.598mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=556.176mil|Location2.X=567.426mil|Location1.Y=389.42mil|Location2.Y=400.67mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=556.176mil|Location2.X=567.426mil|Location1.Y=389.42mil|Location2.Y=400.67mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.128mm &lt; 0.254mm) Between Pad C4-2(14.778mm,10.798mm) on Top Layer And Text "D*" (13.508mm,8.32mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.128mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1169.611mil|Location2.X=1180.861mil|Location1.Y=772.111mil|Location2.Y=783.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1169.611mil|Location2.X=1180.861mil|Location1.Y=772.111mil|Location2.Y=783.361mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad D2-1(30.251mm,19.168mm) on Top Layer And Track (28.451mm,19.968mm)(30.751mm,19.968mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.276mil|Location2.X=1214.526mil|Location1.Y=770.875mil|Location2.Y=782.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.276mil|Location2.X=1214.526mil|Location1.Y=770.875mil|Location2.Y=782.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.156mm &lt; 0.254mm) Between Pad D2-1(30.251mm,19.168mm) on Top Layer And Track (30.751mm,19.968mm)(30.951mm,19.768mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.156mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.513mil|Location2.X=1215.763mil|Location1.Y=729.336mil|Location2.Y=740.586mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.513mil|Location2.X=1215.763mil|Location1.Y=729.336mil|Location2.Y=740.586mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad D2-1(30.251mm,19.168mm) on Top Layer And Track (30.951mm,16.868mm)(30.951mm,19.768mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1201.107mil|Location2.X=1212.357mil|Location1.Y=666.875mil|Location2.Y=678.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1201.107mil|Location2.X=1212.357mil|Location1.Y=666.875mil|Location2.Y=678.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad D2-2(30.251mm,17.668mm) on Top Layer And Track (28.451mm,16.868mm)(30.951mm,16.868mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.513mil|Location2.X=1215.763mil|Location1.Y=670.281mil|Location2.Y=681.531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1204.513mil|Location2.X=1215.763mil|Location1.Y=670.281mil|Location2.Y=681.531mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad D2-2(30.251mm,17.668mm) on Top Layer And Track (30.951mm,16.868mm)(30.951mm,19.768mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.899mil|Location2.X=1134.149mil|Location1.Y=709.651mil|Location2.Y=720.901mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.899mil|Location2.X=1134.149mil|Location1.Y=709.651mil|Location2.Y=720.901mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad D2-3(29.151mm,17.668mm) on Top Layer And Track (28.451mm,16.868mm)(28.451mm,18.543mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1157.8mil|Location2.X=1169.05mil|Location1.Y=666.875mil|Location2.Y=678.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1157.8mil|Location2.X=1169.05mil|Location1.Y=666.875mil|Location2.Y=678.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad D2-3(29.151mm,17.668mm) on Top Layer And Track (28.451mm,16.868mm)(30.951mm,16.868mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.706mil|Location2.X=1133.956mil|Location1.Y=725.841mil|Location2.Y=739.087mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.706mil|Location2.X=1133.956mil|Location1.Y=725.841mil|Location2.Y=739.087mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.198mm &lt; 0.254mm) Between Pad D2-4(29.151mm,19.168mm) on Top Layer And Track (28.451mm,16.868mm)(28.451mm,18.543mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.899mil|Location2.X=1134.149mil|Location1.Y=768.706mil|Location2.Y=779.956mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.899mil|Location2.X=1134.149mil|Location1.Y=768.706mil|Location2.Y=779.956mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad D2-4(29.151mm,19.168mm) on Top Layer And Track (28.451mm,18.543mm)(28.451mm,19.968mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1126.304mil|Location2.X=1137.554mil|Location1.Y=772.111mil|Location2.Y=783.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1126.304mil|Location2.X=1137.554mil|Location1.Y=772.111mil|Location2.Y=783.361mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.173mm &lt; 0.254mm) Between Pad D2-4(29.151mm,19.168mm) on Top Layer And Track (28.451mm,19.968mm)(30.751mm,19.968mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.173mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=807.406mil|Location2.X=818.656mil|Location1.Y=445.281mil|Location2.Y=456.531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=807.406mil|Location2.X=818.656mil|Location1.Y=445.281mil|Location2.Y=456.531mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R1-1(21.001mm,11.053mm) on Top Layer And Track (20.651mm,11.603mm)(20.651mm,12.003mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=834.966mil|Location2.X=846.216mil|Location1.Y=445.281mil|Location2.Y=456.531mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=834.966mil|Location2.X=846.216mil|Location1.Y=445.281mil|Location2.Y=456.531mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R1-1(21.001mm,11.053mm) on Top Layer And Track (21.351mm,11.603mm)(21.351mm,12.003mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=807.406mil|Location2.X=818.656mil|Location1.Y=472.84mil|Location2.Y=484.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=807.406mil|Location2.X=818.656mil|Location1.Y=472.84mil|Location2.Y=484.09mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R1-2(21.001mm,12.553mm) on Top Layer And Track (20.651mm,11.603mm)(20.651mm,12.003mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=837.814mil|Location2.X=850.782mil|Location1.Y=472.632mil|Location2.Y=483.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=837.814mil|Location2.X=850.782mil|Location1.Y=472.632mil|Location2.Y=483.882mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.124mm &lt; 0.254mm) Between Pad R1-2(21.001mm,12.553mm) on Top Layer And Track (21.351mm,11.603mm)(21.351mm,12.003mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.124mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=752.879mil|Location2.X=764.129mil|Location1.Y=473.273mil|Location2.Y=484.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=752.879mil|Location2.X=764.129mil|Location1.Y=473.273mil|Location2.Y=484.523mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R2-1(19.616mm,12.564mm) on Top Layer And Track (19.266mm,11.614mm)(19.266mm,12.014mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=783.287mil|Location2.X=796.255mil|Location1.Y=473.065mil|Location2.Y=484.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=783.287mil|Location2.X=796.255mil|Location1.Y=473.065mil|Location2.Y=484.315mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.124mm &lt; 0.254mm) Between Pad R2-1(19.616mm,12.564mm) on Top Layer And Track (19.966mm,11.614mm)(19.966mm,12.014mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.124mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=752.879mil|Location2.X=764.129mil|Location1.Y=445.714mil|Location2.Y=456.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=752.879mil|Location2.X=764.129mil|Location1.Y=445.714mil|Location2.Y=456.964mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R2-2(19.616mm,11.064mm) on Top Layer And Track (19.266mm,11.614mm)(19.266mm,12.014mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=780.438mil|Location2.X=791.688mil|Location1.Y=445.714mil|Location2.Y=456.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=780.438mil|Location2.X=791.688mil|Location1.Y=445.714mil|Location2.Y=456.964mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R2-2(19.616mm,11.064mm) on Top Layer And Track (19.966mm,11.614mm)(19.966mm,12.014mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1209.812mil|Location2.X=1217.478mil|Location1.Y=828.812mil|Location2.Y=836.479mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1209.812mil|Location2.X=1217.478mil|Location1.Y=828.812mil|Location2.Y=836.479mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad R3-1(30.536mm,20.877mm) on Top Layer And Text "D2" (28.287mm,21.149mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1180.832mil|Location2.X=1192.082mil|Location1.Y=802.525mil|Location2.Y=813.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1180.832mil|Location2.X=1192.082mil|Location1.Y=802.525mil|Location2.Y=813.775mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R3-1(30.536mm,20.877mm) on Top Layer And Track (29.586mm,20.527mm)(29.986mm,20.527mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1180.624mil|Location2.X=1191.874mil|Location1.Y=831.259mil|Location2.Y=844.182mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1180.624mil|Location2.X=1191.874mil|Location1.Y=831.259mil|Location2.Y=844.182mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.124mm &lt; 0.254mm) Between Pad R3-1(30.536mm,20.877mm) on Top Layer And Track (29.586mm,21.227mm)(29.986mm,21.227mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.124mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1139.834mil|Location2.X=1147.501mil|Location1.Y=828.812mil|Location2.Y=836.479mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1139.834mil|Location2.X=1147.501mil|Location1.Y=828.812mil|Location2.Y=836.479mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad R3-2(29.036mm,20.877mm) on Top Layer And Text "D2" (28.287mm,21.149mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.273mil|Location2.X=1164.523mil|Location1.Y=802.525mil|Location2.Y=813.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.273mil|Location2.X=1164.523mil|Location1.Y=802.525mil|Location2.Y=813.775mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R3-2(29.036mm,20.877mm) on Top Layer And Track (29.586mm,20.527mm)(29.986mm,20.527mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.273mil|Location2.X=1164.523mil|Location1.Y=830.084mil|Location2.Y=841.334mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.273mil|Location2.X=1164.523mil|Location1.Y=830.084mil|Location2.Y=841.334mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R3-2(29.036mm,20.877mm) on Top Layer And Track (29.586mm,21.227mm)(29.986mm,21.227mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1209.812mil|Location2.X=1217.478mil|Location1.Y=868.8mil|Location2.Y=876.466mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1209.812mil|Location2.X=1217.478mil|Location1.Y=868.8mil|Location2.Y=876.466mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad R4-1(30.536mm,22.164mm) on Top Layer And Text "D2" (28.287mm,21.149mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1199.821mil|Location2.X=1207.488mil|Location1.Y=872.096mil|Location2.Y=879.763mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1199.821mil|Location2.X=1207.488mil|Location1.Y=872.096mil|Location2.Y=879.763mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad R4-1(30.536mm,22.164mm) on Top Layer And Text "R3" (28.795mm,22.249mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1180.832mil|Location2.X=1192.082mil|Location1.Y=853.194mil|Location2.Y=864.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1180.832mil|Location2.X=1192.082mil|Location1.Y=853.194mil|Location2.Y=864.444mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R4-1(30.536mm,22.164mm) on Top Layer And Track (29.586mm,21.814mm)(29.986mm,21.814mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1180.624mil|Location2.X=1191.874mil|Location1.Y=881.928mil|Location2.Y=894.852mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1180.624mil|Location2.X=1191.874mil|Location1.Y=881.928mil|Location2.Y=894.852mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.124mm &lt; 0.254mm) Between Pad R4-1(30.536mm,22.164mm) on Top Layer And Track (29.586mm,22.514mm)(29.986mm,22.514mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.124mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1149.831mil|Location2.X=1157.497mil|Location1.Y=878.796mil|Location2.Y=886.463mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1149.831mil|Location2.X=1157.497mil|Location1.Y=878.796mil|Location2.Y=886.463mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad R4-2(29.036mm,22.164mm) on Top Layer And Text "D2" (28.287mm,21.149mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.844mil|Location2.X=1137.51mil|Location1.Y=880.944mil|Location2.Y=888.611mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.844mil|Location2.X=1137.51mil|Location1.Y=880.944mil|Location2.Y=888.611mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad R4-2(29.036mm,22.164mm) on Top Layer And Text "R3" (28.795mm,22.249mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.273mil|Location2.X=1164.523mil|Location1.Y=853.194mil|Location2.Y=864.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.273mil|Location2.X=1164.523mil|Location1.Y=853.194mil|Location2.Y=864.444mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R4-2(29.036mm,22.164mm) on Top Layer And Track (29.586mm,21.814mm)(29.986mm,21.814mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.273mil|Location2.X=1164.523mil|Location1.Y=880.753mil|Location2.Y=892.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.273mil|Location2.X=1164.523mil|Location1.Y=880.753mil|Location2.Y=892.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R4-2(29.036mm,22.164mm) on Top Layer And Track (29.586mm,22.514mm)(29.986mm,22.514mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.407mil|Location2.X=938.657mil|Location1.Y=408.706mil|Location2.Y=419.956mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.407mil|Location2.X=938.657mil|Location1.Y=408.706mil|Location2.Y=419.956mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R5-1(23.299mm,10.174mm) on Top Layer And Track (23.849mm,10.524mm)(24.249mm,10.524mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.407mil|Location2.X=938.657mil|Location1.Y=381.147mil|Location2.Y=392.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.407mil|Location2.X=938.657mil|Location1.Y=381.147mil|Location2.Y=392.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R5-1(23.299mm,10.174mm) on Top Layer And Track (23.849mm,9.824mm)(24.249mm,9.824mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.758mil|Location2.X=966.008mil|Location1.Y=409.881mil|Location2.Y=422.805mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.758mil|Location2.X=966.008mil|Location1.Y=409.881mil|Location2.Y=422.805mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.124mm &lt; 0.254mm) Between Pad R5-2(24.799mm,10.174mm) on Top Layer And Track (23.849mm,10.524mm)(24.249mm,10.524mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.124mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.966mil|Location2.X=966.216mil|Location1.Y=381.147mil|Location2.Y=392.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.966mil|Location2.X=966.216mil|Location1.Y=381.147mil|Location2.Y=392.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R5-2(24.799mm,10.174mm) on Top Layer And Track (23.849mm,9.824mm)(24.249mm,9.824mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.966mil|Location2.X=966.216mil|Location1.Y=276.147mil|Location2.Y=287.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.966mil|Location2.X=966.216mil|Location1.Y=276.147mil|Location2.Y=287.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R6-1(24.799mm,7.507mm) on Top Layer And Track (23.849mm,7.157mm)(24.249mm,7.157mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.758mil|Location2.X=966.008mil|Location1.Y=304.881mil|Location2.Y=317.804mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.758mil|Location2.X=966.008mil|Location1.Y=304.881mil|Location2.Y=317.804mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.124mm &lt; 0.254mm) Between Pad R6-1(24.799mm,7.507mm) on Top Layer And Track (23.849mm,7.857mm)(24.249mm,7.857mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.124mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=276.147mil|Location2.Y=287.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=276.147mil|Location2.Y=287.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R6-2(23.299mm,7.507mm) on Top Layer And Track (23.849mm,7.157mm)(24.249mm,7.157mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=303.706mil|Location2.Y=314.956mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=303.706mil|Location2.Y=314.956mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R6-2(23.299mm,7.507mm) on Top Layer And Track (23.849mm,7.857mm)(24.249mm,7.857mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.966mil|Location2.X=966.216mil|Location1.Y=161.147mil|Location2.Y=172.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.966mil|Location2.X=966.216mil|Location1.Y=161.147mil|Location2.Y=172.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R7-1(24.799mm,4.586mm) on Top Layer And Track (23.849mm,4.236mm)(24.249mm,4.236mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.758mil|Location2.X=966.008mil|Location1.Y=189.881mil|Location2.Y=202.804mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.758mil|Location2.X=966.008mil|Location1.Y=189.881mil|Location2.Y=202.804mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.124mm &lt; 0.254mm) Between Pad R7-1(24.799mm,4.586mm) on Top Layer And Track (23.849mm,4.936mm)(24.249mm,4.936mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.124mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=161.147mil|Location2.Y=172.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=161.147mil|Location2.Y=172.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R7-2(23.299mm,4.586mm) on Top Layer And Track (23.849mm,4.236mm)(24.249mm,4.236mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=188.706mil|Location2.Y=199.956mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=188.706mil|Location2.Y=199.956mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R7-2(23.299mm,4.586mm) on Top Layer And Track (23.849mm,4.936mm)(24.249mm,4.936mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.966mil|Location2.X=966.216mil|Location1.Y=331.147mil|Location2.Y=342.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.966mil|Location2.X=966.216mil|Location1.Y=331.147mil|Location2.Y=342.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R8-1(24.799mm,8.904mm) on Top Layer And Track (23.849mm,8.554mm)(24.249mm,8.554mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.758mil|Location2.X=966.008mil|Location1.Y=359.881mil|Location2.Y=372.804mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.758mil|Location2.X=966.008mil|Location1.Y=359.881mil|Location2.Y=372.804mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.124mm &lt; 0.254mm) Between Pad R8-1(24.799mm,8.904mm) on Top Layer And Track (23.849mm,9.254mm)(24.249mm,9.254mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.124mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=331.147mil|Location2.Y=342.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=331.147mil|Location2.Y=342.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R8-2(23.299mm,8.904mm) on Top Layer And Track (23.849mm,8.554mm)(24.249mm,8.554mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=358.706mil|Location2.Y=369.956mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=927.406mil|Location2.X=938.656mil|Location1.Y=358.706mil|Location2.Y=369.956mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad R8-2(23.299mm,8.904mm) on Top Layer And Track (23.849mm,9.254mm)(24.249mm,9.254mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=427.706mil|Location2.X=438.956mil|Location1.Y=530.261mil|Location2.Y=541.511mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=427.706mil|Location2.X=438.956mil|Location1.Y=530.261mil|Location2.Y=541.511mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.229mm &lt; 0.254mm) Between Pad USBC-S3(11.928mm,13.264mm) on Multi-Layer And Track (9.959mm,13.739mm)(10.883mm,13.739mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.229mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=427.706mil|Location2.X=438.956mil|Location1.Y=152.505mil|Location2.Y=163.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=427.706mil|Location2.X=438.956mil|Location1.Y=152.505mil|Location2.Y=163.755mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.229mm &lt; 0.254mm) Between Pad USBC-S4(11.928mm,4.364mm) on Multi-Layer And Track (9.959mm,3.889mm)(10.883mm,3.889mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.229mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDMQ1HMDSHDLKTKCH2EEM4RTMMCICMPZ5G3EOEGSJPI5BNLGWFW13O"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=634.708mil|Location2.X=645.958mil|Location1.Y=333.762mil|Location2.Y=345.012mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=634.708mil|Location2.X=645.958mil|Location1.Y=333.762mil|Location2.Y=345.012mil|Absolute=True">Silk To Silk Clearance Constraint: (0.19mm &lt; 0.254mm) Between Arc (16.602mm,8.693mm) on Top Overlay And Text "D*" (13.508mm,8.32mm) on Top Overlay Silk Text to Silk Clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=916.183mil|Location2.X=927.433mil|Location1.Y=617.417mil|Location2.Y=628.667mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=916.183mil|Location2.X=927.433mil|Location1.Y=617.417mil|Location2.Y=628.667mil|Absolute=True">Silk To Silk Clearance Constraint: (0.127mm &lt; 0.254mm) Between Text "C3" (23.16mm,16.016mm) on Top Overlay And Text "R7" (23.16mm,14.111mm) on Top Overlay Silk Text to Silk Clearance [0.127mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=518.44mil|Location2.X=529.69mil|Location1.Y=321.926mil|Location2.Y=333.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=518.44mil|Location2.X=529.69mil|Location1.Y=321.926mil|Location2.Y=333.176mil|Absolute=True">Silk To Silk Clearance Constraint: (0.139mm &lt; 0.254mm) Between Text "D*" (13.508mm,8.32mm) on Top Overlay And Track (13.178mm,3.889mm)(13.178mm,13.739mm) on Top Overlay Silk Text to Silk Clearance [0.139mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.839mil|Location2.X=1142.505mil|Location1.Y=888.793mil|Location2.Y=896.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1134.839mil|Location2.X=1142.505mil|Location1.Y=888.793mil|Location2.Y=896.46mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (28.287mm,21.149mm) on Top Overlay And Text "R3" (28.795mm,22.249mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1169.824mil|Location2.X=1177.491mil|Location1.Y=830.875mil|Location2.Y=838.542mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1169.824mil|Location2.X=1177.491mil|Location1.Y=830.875mil|Location2.Y=838.542mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (28.287mm,21.149mm) on Top Overlay And Track (29.586mm,21.227mm)(29.986mm,21.227mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1154.14mil|Location2.X=1165.39mil|Location1.Y=853.194mil|Location2.Y=864.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1154.14mil|Location2.X=1165.39mil|Location1.Y=853.194mil|Location2.Y=864.444mil|Absolute=True">Silk To Silk Clearance Constraint: (0.056mm &lt; 0.254mm) Between Text "D2" (28.287mm,21.149mm) on Top Overlay And Track (29.586mm,21.814mm)(29.986mm,21.814mm) on Top Overlay Silk Text to Silk Clearance [0.056mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1178.033mil|Location2.X=1185.7mil|Location1.Y=885.193mil|Location2.Y=892.859mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1178.033mil|Location2.X=1185.7mil|Location1.Y=885.193mil|Location2.Y=892.859mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (28.287mm,21.149mm) on Top Overlay And Track (29.586mm,22.514mm)(29.986mm,22.514mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=812.118mil|Location2.X=823.368mil|Location1.Y=608.499mil|Location2.Y=619.749mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=812.118mil|Location2.X=823.368mil|Location1.Y=608.499mil|Location2.Y=619.749mil|Absolute=True">Silk To Silk Clearance Constraint: (0.226mm &lt; 0.254mm) Between Text "R1" (20.747mm,13.835mm) on Top Overlay And Text "R2" (19.755mm,15.839mm) on Top Overlay Silk Text to Silk Clearance [0.226mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=898.673mil|Location2.X=909.923mil|Location1.Y=543.808mil|Location2.Y=555.743mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=898.673mil|Location2.X=909.923mil|Location1.Y=543.808mil|Location2.Y=555.743mil|Absolute=True">Silk To Silk Clearance Constraint: (0.217mm &lt; 0.254mm) Between Text "R1" (20.747mm,13.835mm) on Top Overlay And Text "R7" (23.16mm,14.111mm) on Top Overlay Silk Text to Silk Clearance [0.217mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.844mil|Location2.X=1137.51mil|Location1.Y=922.765mil|Location2.Y=930.432mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.844mil|Location2.X=1137.51mil|Location1.Y=922.765mil|Location2.Y=930.432mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (28.795mm,22.249mm) on Top Overlay And Text "R4" (28.795mm,23.536mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1168.039mil|Location2.X=1179.289mil|Location1.Y=861.217mil|Location2.Y=872.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1168.039mil|Location2.X=1179.289mil|Location1.Y=861.217mil|Location2.Y=872.467mil|Absolute=True">Silk To Silk Clearance Constraint: (0.208mm &lt; 0.254mm) Between Text "R3" (28.795mm,22.249mm) on Top Overlay And Track (29.586mm,21.814mm)(29.986mm,21.814mm) on Top Overlay Silk Text to Silk Clearance [0.208mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1160.949mil|Location2.X=1168.615mil|Location1.Y=882.524mil|Location2.Y=890.19mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1160.949mil|Location2.X=1168.615mil|Location1.Y=882.524mil|Location2.Y=890.19mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (28.795mm,22.249mm) on Top Overlay And Track (29.586mm,22.514mm)(29.986mm,22.514mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=912.643mil|Location2.X=923.893mil|Location1.Y=769.917mil|Location2.Y=781.167mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=912.643mil|Location2.X=923.893mil|Location1.Y=769.917mil|Location2.Y=781.167mil|Absolute=True">Silk To Silk Clearance Constraint: (0.005mm &lt; 0.254mm) Between Text "R6" (23.349mm,18.048mm) on Top Overlay And Text "R8" (23.299mm,19.826mm) on Top Overlay Silk Text to Silk Clearance [0.005mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDLAQVHWVUVRLVEK5OVXCM5XGCVLVH2WSXEC35FFD2UUGLDA3U2YCE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1084.256mil|Location2.X=1107.673mil|Location1.Y=828.823mil|Location2.Y=862.739mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1084.256mil|Location2.X=1107.673mil|Location1.Y=828.823mil|Location2.Y=862.739mil|Absolute=True">Net Antennae: Track (27.754mm,18.586mm)(27.754mm,21.266mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=771.122mil|Location2.X=813.96mil|Location1.Y=264.862mil|Location2.Y=331.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\kattemjau\Downloads\USB-C Charger\USBC charger.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=771.122mil|Location2.X=813.96mil|Location1.Y=264.862mil|Location2.Y=331.085mil|Absolute=True">Net Antennae: Via (20.027mm,7.168mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
