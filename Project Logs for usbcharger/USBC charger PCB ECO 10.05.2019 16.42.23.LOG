@@ -1,0 +1,41 @@
+Removed Pin From Net: NetName=CC1 Pin=*-2
+Removed Pin From Net: NetName=CC2 Pin=*-4
+Removed Pin From Net: NetName=SCL Pin=*-7
+Removed Pin From Net: NetName=SDA Pin=*-8
+Removed Pin From Net: NetName=GND Pin=*-10
+Removed Member From Class: ClassName=USBC charger Member=*
+Added Component: Designator=U1(QFN50P400X400X80_HS-25N)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=CC1 Pin=U1-1
+Added Pin To Net: NetName=CC1 Pin=U1-2
+Added Pin To Net: NetName=GND Pin=U1-3
+Added Pin To Net: NetName=CC2 Pin=U1-4
+Added Pin To Net: NetName=CC2 Pin=U1-5
+Added Pin To Net: NetName=GND Pin=U1-6
+Added Pin To Net: NetName=SCL Pin=U1-7
+Added Pin To Net: NetName=SDA Pin=U1-8
+Added Pin To Net: NetName=GND Pin=U1-10
+Added Pin To Net: NetName=GND Pin=U1-12
+Added Pin To Net: NetName=GND Pin=U1-13
+Added Pin To Net: NetName=GND Pin=U1-22
+Added Pin To Net: NetName=CC1 Pin=USBC-A5
+Added Pin To Net: NetName=CC2 Pin=USBC-B5
+Added Pin To Net: NetName=A_B_SIDE Pin=U1-17
+Added Net: Name=A_B_SIDE
+Added Pin To Net: NetName=GPIO Pin=U1-15
+Added Net: Name=GPIO
+Added Pin To Net: NetName=POWER_PDO2 Pin=U1-20
+Added Net: Name=POWER_PDO2
+Added Pin To Net: NetName=POWER_PDO3 Pin=U1-14
+Added Net: Name=POWER_PDO3
+Added Pin To Net: NetName=SBU1 Pin=USBC-A8
+Added Net: Name=SBU1
+Added Pin To Net: NetName=SBU2 Pin=USBC-B8
+Added Net: Name=SBU2
+Added Pin To Net: NetName=USB_N Pin=USBC-A7
+Added Pin To Net: NetName=USB_N Pin=USBC-B7
+Added Net: Name=USB_N
+Added Pin To Net: NetName=USB_P Pin=USBC-A6
+Added Pin To Net: NetName=USB_P Pin=USBC-B6
+Added Net: Name=USB_P
+Added Member To Class: ClassName=USBC charger Member=Component U1 STUSB4500

@@ -1,0 +1,9 @@
+Added Pin To Net: NetName=GND Pin=*-10
+Added Pin To Net: NetName=CC1 Pin=*-2
+Added Net: Name=CC1
+Added Pin To Net: NetName=CC2 Pin=*-4
+Added Net: Name=CC2
+Added Pin To Net: NetName=SCL Pin=*-7
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=*-8
+Added Net: Name=SDA

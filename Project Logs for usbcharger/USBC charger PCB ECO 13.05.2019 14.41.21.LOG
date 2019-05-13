@@ -1,0 +1,19 @@
+Change Component Footprint: Designator=C? Old Footprint=1608[0603] New Footprint=C2512
+Change Component Designator: OldDesignator=C? NewDesignator=C3
+Change Component Designator: OldDesignator=C? NewDesignator=C4
+Change Component Designator: OldDesignator=R? NewDesignator=R5
+Change Component Designator: OldDesignator=R? NewDesignator=R6
+Change Component Designator: OldDesignator=R? NewDesignator=R7
+Change Component Designator: OldDesignator=R? NewDesignator=R8
+Change Net Name : Old Net Name=NetC?_1 New Net Name=NetC3_1
+Change Net Name : Old Net Name=NetC?_2 New Net Name=NetC3_2
+Change Net Name : Old Net Name=NetR?_1 New Net Name=NetR5_2
+Change Net Name : Old Net Name=NetR?_2 New Net Name=NetR7_2
+Added Pin To Net: NetName=NetR8_2 Pin=R8-2
+Added Pin To Net: NetName=NetR8_2 Pin=U1-16
+Added Net: Name=NetR8_2
+Added Member To Class: ClassName=USBC charger Member=Component C3 Cap Semi
+Added Member To Class: ClassName=USBC charger Member=Component R6 Res3
+Added Member To Class: ClassName=USBC charger Member=Component R7 Res3
+Added Member To Class: ClassName=USBC charger Member=Component R8 Res3
+Added Room: Name=USBC charger
