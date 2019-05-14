@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------------------------------------------------------
-NCDrill File Report For: USBC charger.PcbDoc   14.05.2019  16.49.24
+NCDrill File Report For: USBC charger.PcbDoc   14.05.2019  22.18.44
 ----------------------------------------------------------------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
@@ -9,11 +9,11 @@ ASCII SlotHoles File : USBC charger-SlotHoles.TXT
 Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
 ----------------------------------------------------------------------------------------------------------------------------------
 T1      8mil (0.2mm)                                              Round             4         PTH        0.00inch (0.00mm)
-T2      12mil (0.3mm)                                             Round             34        PTH        0.00inch (0.00mm)
+T2      12mil (0.3mm)                                             Round             47        PTH        0.00inch (0.00mm)
 T3      18mil (0.45mm)                                            Slot              4         PTH        0.00inch (0.00mm)
-T4      24mil (0.6mm)                                             Round             15        PTH        0.00inch (0.00mm)
+T4      24mil (0.6mm)                                             Round             23        PTH        0.00inch (0.00mm)
 T5      51mil (1.3mm)                                             Round             2         PTH        0.00inch (0.00mm)
 ----------------------------------------------------------------------------------------------------------------------------------
-Totals                                                                              59
+Totals                                                                              80
 
 Total Processing Time (hh:mm:ss) : 00.00.00

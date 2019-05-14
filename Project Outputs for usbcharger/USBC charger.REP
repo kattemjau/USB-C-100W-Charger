@@ -2,6 +2,68 @@
 FileName = USBC charger.GBR
 AutoAperture = True
 *************************************************************
+Generating : Bottom Layer
+      File : USBC charger.GBL
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D30
+    D31
+    D33
+    D55
+    D56
+    D57
+    D58
+    D59
+*************************************************************
+
+*************************************************************
+Generating : Top Layer
+      File : USBC charger.GTL
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D30
+    D31
+    D33
+    D38
+    D39
+    D40
+    D41
+    D42
+    D43
+    D44
+    D45
+    D46
+    D47
+    D48
+    D49
+    D50
+    D51
+    D52
+    D53
+    D54
+    D55
+    D56
+    D57
+    D58
+    D59
+*************************************************************
+
+*************************************************************
 Generating : Mechanical 16
       File : USBC charger.GM16
 
@@ -43,7 +105,7 @@ Generating : Mechanical 4
 
 
 Used DCodes :
-    D12
+    D13
 *************************************************************
 
 *************************************************************
@@ -75,7 +137,7 @@ Generating : Bottom Overlay
 
 
 Used DCodes :
-    D13
+    D12
 *************************************************************
 
 *************************************************************
@@ -96,21 +158,8 @@ Used DCodes :
     D33
     D34
     D35
-*************************************************************
-
-*************************************************************
-Generating : Top Overlay
-      File : USBC charger.GTO
-
-    Adding Layer      : Top Overlay
-
-
-Used DCodes :
-    D10
-    D11
-    D12
-    D13
-    D14
+    D36
+    D37
 *************************************************************
 
 *************************************************************
@@ -146,65 +195,22 @@ Used DCodes :
     D33
     D34
     D35
-*************************************************************
-
-*************************************************************
-Generating : Top Layer
-      File : USBC charger.GTL
-
-    Adding Layer      : Top Layer
-
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D10
-    D11
-    D13
     D36
     D37
-    D38
-    D39
-    D40
-    D41
-    D42
-    D43
-    D44
-    D45
-    D46
-    D47
-    D48
-    D49
-    D50
-    D51
-    D52
-    D53
-    D54
-    D55
-    D56
-    D57
-    D58
-    D59
 *************************************************************
 
 *************************************************************
-Generating : Bottom Layer
-      File : USBC charger.GBL
+Generating : Top Overlay
+      File : USBC charger.GTO
 
-    Adding Layer      : Bottom Layer
-
-    Adding Layer      : Multi-Layer
+    Adding Layer      : Top Overlay
 
 
 Used DCodes :
     D10
     D11
-    D53
-    D54
-    D55
-    D56
-    D57
-    D58
-    D59
+    D12
+    D13
+    D14
 *************************************************************
 
