@@ -1,13 +1,20 @@
-Output: NC Drill Files
-Type  : NC Drill
-From  : Project [usbcharger.PrjPCB]
-   Generated File[USBC charger-RoundHoles.TXT]
-   Generated File[USBC charger-SlotHoles.TXT]
-   Generated File[USBC charger.LDP]
-   Generated File[USBC charger.DRR]
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [usbcharger.PrjPCB]
+   Generated File[USBC charger.GTO]
+   Generated File[USBC charger.GTP]
+   Generated File[USBC charger.GTS]
+   Generated File[USBC charger.GTL]
+   Generated File[USBC charger.GBL]
+   Generated File[USBC charger.GBS]
+   Generated File[USBC charger.GBO]
+   Generated File[USBC charger.GM1]
+   Generated File[USBC charger.RUL]
+   Generated File[USBC charger.EXTREP]
+   Generated File[USBC charger.REP]
 
 
-Files Generated   : 4
+Files Generated   : 11
 Documents Printed : 0
 
-Finished Output Generation At 22.18.44 On 14.05.2019
+Finished Output Generation At 4:07:12 PM On 6/8/2019

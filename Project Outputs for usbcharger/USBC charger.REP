@@ -2,32 +2,31 @@
 FileName = USBC charger.GBR
 AutoAperture = True
 *************************************************************
-Generating : Bottom Layer
-      File : USBC charger.GBL
+Generating : Top Overlay
+      File : USBC charger.GTO
 
-    Adding Layer      : Bottom Layer
+    Adding Layer      : Top Overlay
 
-    Adding Layer      : Multi-Layer
+    Adding Layer      : Mechanical 1
 
 
 Used DCodes :
     D10
     D11
-    D30
-    D31
-    D33
-    D55
-    D56
-    D57
-    D58
-    D59
+    D12
+    D13
+    D14
+    D15
+    D16
 *************************************************************
 
 *************************************************************
-Generating : Top Layer
-      File : USBC charger.GTL
+Generating : Bottom Layer
+      File : USBC charger.GBL
 
-    Adding Layer      : Top Layer
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Mechanical 1
 
     Adding Layer      : Multi-Layer
 
@@ -36,9 +35,70 @@ Used DCodes :
     D10
     D11
     D12
-    D30
-    D31
+    D15
+    D16
+    D49
+    D50
+    D52
+    D57
+    D60
+    D61
+    D62
+    D63
+*************************************************************
+
+*************************************************************
+Generating : Mechanical 1
+      File : USBC charger.GM1
+
+    Adding Layer      : Mechanical 1
+
+    Adding Layer      : Mechanical 1
+
+
+Used DCodes :
+    D12
+    D15
+    D16
+*************************************************************
+
+*************************************************************
+Generating : Bottom Overlay
+      File : USBC charger.GBO
+
+    Adding Layer      : Bottom Overlay
+
+    Adding Layer      : Mechanical 1
+
+
+Used DCodes :
+    D12
+    D15
+    D16
+*************************************************************
+
+*************************************************************
+Generating : Top Solder
+      File : USBC charger.GTS
+
+    Adding Layer      : Top Solder
+
+    Adding Layer      : Mechanical 1
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D12
+    D15
+    D16
     D33
+    D34
+    D35
+    D36
+    D37
     D38
     D39
     D40
@@ -58,115 +118,15 @@ Used DCodes :
     D54
     D55
     D56
-    D57
-    D58
-    D59
 *************************************************************
 
 *************************************************************
-Generating : Mechanical 16
-      File : USBC charger.GM16
+Generating : Top Paste
+      File : USBC charger.GTP
 
-    Adding Layer      : Mechanical 16
-
-
-Used DCodes :
-    D62
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 15
-      File : USBC charger.GM15
-
-    Adding Layer      : Mechanical 15
-
-
-Used DCodes :
-    D61
-    D62
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 13
-      File : USBC charger.GM13
-
-    Adding Layer      : Mechanical 13
-
-
-Used DCodes :
-    D61
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 4
-      File : USBC charger.GM4
-
-    Adding Layer      : Mechanical 4
-
-
-Used DCodes :
-    D13
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 1
-      File : USBC charger.GM1
+    Adding Layer      : Top Paste
 
     Adding Layer      : Mechanical 1
-
-
-Used DCodes :
-    D60
-*************************************************************
-
-*************************************************************
-Generating : Keep-Out Layer
-      File : USBC charger.GKO
-
-    Adding Layer      : Keep-Out Layer
-
-
-Used DCodes :
-*************************************************************
-
-*************************************************************
-Generating : Bottom Overlay
-      File : USBC charger.GBO
-
-    Adding Layer      : Bottom Overlay
-
-
-Used DCodes :
-    D12
-*************************************************************
-
-*************************************************************
-Generating : Bottom Solder
-      File : USBC charger.GBS
-
-    Adding Layer      : Bottom Solder
-
-    Adding Layer      : Bottom Layer
-
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D30
-    D31
-    D32
-    D33
-    D34
-    D35
-    D36
-    D37
-*************************************************************
-
-*************************************************************
-Generating : Top Solder
-      File : USBC charger.GTS
-
-    Adding Layer      : Top Solder
 
     Adding Layer      : Top Layer
 
@@ -174,6 +134,7 @@ Generating : Top Solder
 
 
 Used DCodes :
+    D12
     D15
     D16
     D17
@@ -192,25 +153,77 @@ Used DCodes :
     D30
     D31
     D32
-    D33
-    D34
-    D35
-    D36
-    D37
 *************************************************************
 
 *************************************************************
-Generating : Top Overlay
-      File : USBC charger.GTO
+Generating : Bottom Solder
+      File : USBC charger.GBS
 
-    Adding Layer      : Top Overlay
+    Adding Layer      : Bottom Solder
+
+    Adding Layer      : Mechanical 1
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D12
+    D15
+    D16
+    D49
+    D50
+    D51
+    D52
+    D53
+    D54
+    D55
+    D56
+*************************************************************
+
+*************************************************************
+Generating : Top Layer
+      File : USBC charger.GTL
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Mechanical 1
+
+    Adding Layer      : Multi-Layer
 
 
 Used DCodes :
     D10
     D11
     D12
-    D13
-    D14
+    D15
+    D16
+    D17
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
+    D32
+    D49
+    D50
+    D52
+    D57
+    D58
+    D59
+    D60
+    D61
+    D62
+    D63
 *************************************************************
 
